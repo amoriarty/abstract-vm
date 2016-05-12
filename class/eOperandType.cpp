@@ -25,3 +25,9 @@ eOperandType						&eOperandType::operator=(const eOperandType &rhs) {
 
 //PUBLIC METHOD
 const std::string					eOperandType::getType(void) const { return (this->_type); }
+
+//OSTREAM OPERATOR OVERLOAD
+std::ostream						&operator<<(std::ostream &o, const eOperandType &rhs) {
+	o << rhs.getType();
+	return (o);
+}

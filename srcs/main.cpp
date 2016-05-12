@@ -8,7 +8,7 @@
 int										main(void) {
 	eOperandType						*test = new eOperandType("int8");
 
-	std::cout << test->getType() << std::endl;
+	std::cout << *test << std::endl;
 	delete test;
 	return (EXIT_SUCCESS);
 }

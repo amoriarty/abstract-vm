@@ -19,8 +19,9 @@ public:
 	eOperandType                        &operator=(const eOperandType &rhs);
 
 	const std::string					getType(void) const;
-
 };
+
+std::ostream							&operator<<(std::ostream &o, const eOperandType &rhs);
 
 
 #endif
