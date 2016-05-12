@@ -3,8 +3,12 @@
 //
 
 #include <iostream>
+#include "eOperandType.hpp"
 
 int										main(void) {
-	std::cout << "Hello World" << std::endl;
+	eOperandType						*test = new eOperandType("int8");
+
+	std::cout << test->getType() << std::endl;
+	delete test;
 	return (EXIT_SUCCESS);
 }
