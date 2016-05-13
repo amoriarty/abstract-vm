@@ -1,8 +1,15 @@
 //
-// Created by Alexandre LEGENT on 5/12/16.
+//           :::      ::::::::
+//         :+:      :+:    :+:     eOperandType.cpp
+//       +:+ +:+         +:+
+//     +#+  +:+       +#+          By: Alexandre LEGENT <alegent@student.42.fr>
+//   +#+#+#+#+#+   +#+
+//        #+#    #+#
+//       ###   ###########.fr      Created: 5/13/16 11:47 AM by alegent
 //
 
 #include "eOperandType.hpp"
+
 
 //PRIVATE CONSTRUCTOR
 //DEFAULT

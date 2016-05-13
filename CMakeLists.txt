@@ -10,5 +10,4 @@ include_directories(template)
 
 add_executable(abstract-vm
 		srcs/main.cpp
-		interface/IOperand.hpp
-		class/eOperandType.cpp include/eOperandType.hpp template/Operand.tpp)
+		class/eOperandType.cpp)

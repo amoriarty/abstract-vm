@@ -1,5 +1,11 @@
 //
-// Created by Alexandre LEGENT on 5/12/16.
+//           :::      ::::::::
+//         :+:      :+:    :+:     IOperand.h
+//       +:+ +:+         +:+
+//     +#+  +:+       +#+          By: Alexandre LEGENT <alegent@student.42.fr>
+//   +#+#+#+#+#+   +#+
+//        #+#    #+#
+//       ###   ###########.fr      Created: 5/13/16 11:57 AM by alegent
 //
 
 #ifndef IOPERAND_HPP

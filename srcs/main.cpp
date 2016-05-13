@@ -1,5 +1,11 @@
 //
-// Created by Alexandre LEGENT on 5/12/16.
+//           :::      ::::::::
+//         :+:      :+:    :+:     main.cpp
+//       +:+ +:+         +:+
+//     +#+  +:+       +#+          By: Alexandre LEGENT <alegent@student.42.fr>
+//   +#+#+#+#+#+   +#+
+//        #+#    #+#
+//       ###   ###########.fr      Created: 5/13/16 12:07 PM by alegent
 //
 
 #include <iostream>
