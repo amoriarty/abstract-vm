@@ -9,12 +9,13 @@
 //
 
 #include <iostream>
-#include "eOperandType.hpp"
+#include "Operand.tpp"
+
 
 int										main(void) {
-	eOperandType						*test = new eOperandType("int8");
+	Operand<int>						*test = new Operand<int>("int8");
 
-	std::cout << *test << std::endl;
+	std::cout << test->getType() << std::endl;
 	delete test;
 	return (EXIT_SUCCESS);
 }

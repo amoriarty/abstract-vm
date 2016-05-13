@@ -16,7 +16,7 @@
 eOperandType::eOperandType(void) : _type(NULL) { }
 
 //COPY
-eOperandType::eOperandType(eOperandType &rhs) : _type(rhs.getType()) { }
+eOperandType::eOperandType(const eOperandType &rhs) : _type(rhs.getType()) { }
 
 //PUBLIC CONSTRUCTOR
 //DEFAULT

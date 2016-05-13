@@ -14,19 +14,24 @@
 
 
 class eOperandType {
-	std::string									_type;
+	//PRIVATE ATTRIBUTS
+	const std::string							_type;
+
+	//PRIVAT CONSTRUCTOR
 												eOperandType(void);
-												eOperandType(eOperandType &rhs);
 
 public:
-
+	//PUBLIC CONSTRUCTOR
+												eOperandType(const eOperandType &rhs);
 												eOperandType(const std::string type);
 												~eOperandType(void);
 	eOperandType                       		 	&operator=(const eOperandType &rhs);
 
+	//PUBLIC GETTER
 	const std::string							getType(void) const;
 };
 
+//OSTREAM OPERATOR OVERLOAD
 std::ostream									&operator<<(std::ostream &o, const eOperandType &rhs);
 
 
