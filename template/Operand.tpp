@@ -30,7 +30,7 @@ public:
 	//PUBLIC GETTER
 	eOperandType				getType(void) const { return (this->_type); };
 	int 						getPrecision(void) const { return (0); };
-	const std::string			&toString(void) const { };
+	const std::string			&toString(void) const { return this->_type.getType(); };
 
 	//OPERATOR OVERLOAD
 	Operand						*operator+(const Operand &rhs) { static_cast<void>(rhs); };
