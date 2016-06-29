@@ -12,27 +12,12 @@
 # define EOPERANDTYPE_HPP
 # include <iostream>
 
-
-class eOperandType {
-	//PRIVATE ATTRIBUTS
-	const std::string							_type;
-
-	//PRIVAT CONSTRUCTOR
-												eOperandType(void);
-
-public:
-	//PUBLIC CONSTRUCTOR
-												eOperandType(const eOperandType &rhs);
-												eOperandType(const std::string type);
-												~eOperandType(void);
-	eOperandType                       		 	&operator=(const eOperandType &rhs);
-
-	//PUBLIC GETTER
-	const std::string							getType(void) const;
+enum eOperandType {
+	Int8,
+	Int16,
+	Int32,
+	Float,
+	Double
 };
-
-//OSTREAM OPERATOR OVERLOAD
-std::ostream									&operator<<(std::ostream &o, const eOperandType &rhs);
-
 
 #endif

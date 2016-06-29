@@ -13,7 +13,7 @@
 
 
 int										main(void) {
-	Operand<int>						*test = new Operand<int>("int8");
+	Operand<int>						*test = new Operand<int>(Int8);
 
 	std::cout << test->getType() << std::endl;
 	delete test;

@@ -10,19 +10,20 @@
 
 #ifndef OPERAND_TPP
 # define OPERAND_TPP
-# include <IOperand.hpp>
+# include "IOperand.hpp"
 
-template <typename T>
+//TODO USE THE TYPENAME
+//template <typename T>
 class Operand : public IOperand {
 	//PRIVATE ATTRIBUTS
-	const eOperandType			&_type;
+	const eOperandType			_type;
 
 	//PRIVATE CONSTRUCTOR
-								Operand(void) : _type(*(new eOperandType(NULL))) {};
+								Operand(void) : _type(Int8) {};
 
 public:
 	//PUBLIC CONSTRUCTOR
-								Operand(const std::string type) : _type(*(new eOperandType(type))) {};
+								Operand(const eOperandType type) : _type(type) {};
 								Operand(const Operand &rhs) : _type(rhs.getType()) {};
 								~Operand(void) {};
 	Operand 					&operator=(const Operand &rhs) { return (*new Operand(rhs)); };
@@ -30,14 +31,20 @@ public:
 	//PUBLIC GETTER
 	eOperandType				getType(void) const { return (this->_type); };
 	int 						getPrecision(void) const { return (0); };
-	const std::string			&toString(void) const { return this->_type.getType(); };
+	//TODO IMPLEMENT TO STRING METHOD.
+	//const std::string			&toString(void) const { };
 
 	//OPERATOR OVERLOAD
-	Operand						*operator+(const Operand &rhs) { static_cast<void>(rhs); };
-	Operand						*operator-(const Operand &rhs) { static_cast<void>(rhs); };
-	Operand						*operator*(const Operand &rhs) { static_cast<void>(rhs); };
-	Operand						*operator/(const Operand &rhs) { static_cast<void>(rhs); };
-	Operand						*operator%(const Operand &rhs) { static_cast<void>(rhs); };
+	//TODO OPERATOR OVERLOAD
+	/*
+	Operand						*operator+(const Operand &rhs) { return (rhs); };
+	Operand						*operator-(const Operand &rhs) { return (rhs); };
+	Operand						*operator*(const Operand &rhs) { return (rhs); };
+	Operand						*operator/(const Operand &rhs) { return (rhs); };
+	Operand						*operator%(const Operand &rhs) { return (rhs); };
+	*/
+
+	//TODO FACTORY METHOD
 };
 
 
