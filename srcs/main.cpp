@@ -13,9 +13,9 @@
 
 
 int										main(void) {
-	Operand<int>						*test = new Operand<int>(Int8);
+	Operand<int>						*test = new Operand<int>(Int8, 42);
 
-	std::cout << test->getType() << std::endl;
+	std::cout << test->toString() << std::endl;
 	delete test;
 	return (EXIT_SUCCESS);
 }

@@ -10,29 +10,38 @@
 
 #ifndef OPERAND_TPP
 # define OPERAND_TPP
+# include <sstream>
 # include "IOperand.hpp"
 
 //TODO USE THE TYPENAME
-//template <typename T>
+template <typename T>
 class Operand : public IOperand {
 	//PRIVATE ATTRIBUTS
 	const eOperandType			_type;
+	const T						_value;
 
 	//PRIVATE CONSTRUCTOR
-								Operand(void) : _type(Int8) {};
+								Operand(void) : _type(Int8), _value(0) {};
 
 public:
 	//PUBLIC CONSTRUCTOR
-								Operand(const eOperandType type) : _type(type) {};
-								Operand(const Operand &rhs) : _type(rhs.getType()) {};
+								Operand(const eOperandType type, const T value) : _type(type), _value(value) {};
+								Operand(const Operand &rhs) : _type(rhs.getType()), _value(rhs.getValue()) {};
 								~Operand(void) {};
 	Operand 					&operator=(const Operand &rhs) { return (*new Operand(rhs)); };
 
 	//PUBLIC GETTER
 	eOperandType				getType(void) const { return (this->_type); };
 	int 						getPrecision(void) const { return (0); };
-	//TODO IMPLEMENT TO STRING METHOD.
-	//const std::string			&toString(void) const { };
+	T							getValue(void) const { return (this->_value); };
+
+	//TO STRING METHOD
+	const std::string			&toString(void) const {
+		std::ostringstream		ss;
+
+		ss << this->_value;
+		return *new std::string(ss.str());
+	};
 
 	//OPERATOR OVERLOAD
 	//TODO OPERATOR OVERLOAD
@@ -46,6 +55,5 @@ public:
 
 	//TODO FACTORY METHOD
 };
-
 
 #endif
