@@ -20,8 +20,6 @@ public:
 	virtual int 						getPrecision(void) const = 0;
 	virtual eOperandType				getType(void) const = 0;
 
-	//TODO IMPLEMENT NON VIRTUALS METHODS. THIS CAN'T BE COMMENTED.
-	/*
 	//PUBLIC OPERATOR OVERLOAD
 	const virtual IOperand				*operator+(const IOperand &rhs) const = 0;
 	const virtual IOperand				*operator-(const IOperand &rhs) const = 0;
@@ -31,7 +29,6 @@ public:
 
 	//PUBLIC TO STRING METHOD
 	const virtual std::string			&toString(void) const = 0;
-	*/
 
 	//PUBLIC DESTRUCTOR
 	virtual 							~IOperand(void) {}
