@@ -9,6 +9,7 @@
 //
 
 #include <iostream>
+#include <string>
 #include "Factory.hpp"
 #include "Operand.tpp"
 
@@ -18,6 +19,9 @@ Factory::Factory(void) {
 	std::cout << "Factory constructed" << std::endl;
 	this->_map.push_back(&Factory::createInt8);
 	this->_map.push_back(&Factory::createInt16);
+	this->_map.push_back(&Factory::createInt32);
+	this->_map.push_back(&Factory::createFloat);
+	this->_map.push_back(&Factory::createDouble);
 }
 
 //PUBLIC DESTRUCTOR
@@ -43,11 +47,56 @@ const IOperand				*Factory::createOperand(const eOperandType type, std::string c
 
 //PRIVATE METHOD
 const IOperand				*Factory::createInt8(const std::string &value) const {
-	//TODO CHAR CONVERSION
-	return (new Operand<char>(Int8, atoi(value.c_str())));
+	int 					number = atoi(value.c_str());
+	std::ostringstream		ss;
+
+	ss << number;
+	if (value.compare(ss.str()) != 0)
+		std::cout << "ERROR" << std::endl;
+	//TODO OVERFLOW EXCEPTION
+	return new Operand<char>(Int8, static_cast<char>(number));
 }
 
 const IOperand				*Factory::createInt16(const std::string &value) const {
-	//TODO SHORT CONVERSION
-	return (new Operand<short>(Int16, value[0]));
+	int 					number = atoi(value.c_str());
+	std::ostringstream		ss;
+
+	ss << number;
+	if (value.compare(ss.str()) != 0)
+		std::cout << "ERROR" << std::endl;
+	//TODO OVERFLOW EXCEPTION
+	return new Operand<short>(Int16, static_cast<short>(number));
+}
+
+const IOperand				*Factory::createInt32(const std::string &value) const {
+	int 					number = atoi(value.c_str());
+	std::ostringstream		ss;
+
+	ss << number;
+	if (value.compare(ss.str()) != 0)
+		std::cout << "ERROR" << std::endl;
+	//TODO OVERFLOW EXCEPTION
+	return new Operand<int>(Int32, number);
+}
+
+const IOperand				*Factory::createFloat(const std::string &value) const {
+	double 					number = atof(value.c_str());
+	std::ostringstream		ss;
+
+	ss << number;
+	if (value.compare(ss.str()) != 0)
+		std::cout << "ERROR " << std::endl;
+	//TODO OVERFLOW EXCEPTION
+	return new Operand<float>(Float, static_cast<float>(number));
+}
+
+const IOperand				*Factory::createDouble(const std::string &value) const {
+	double 					number = atof(value.c_str());
+	std::ostringstream		ss;
+
+	ss << number;
+	if (value.compare(ss.str()) != 0)
+		std::cout << "ERROR " << ss << std::endl;
+	//TODO OVERFLOW EXCEPTION
+	return new Operand<double>(Double, number);
 }
