@@ -30,13 +30,25 @@ public:
 								Operand(const eOperandType type, const T value) : _type(type), _value(value) {};
 								Operand(const Operand &rhs) : _type(rhs.getType()), _value(rhs.getValue()) {};
 								~Operand(void) {};
-	Operand 					&operator=(const Operand &rhs) {
-		return (*new Operand(rhs));
-	};
+	Operand 					&operator=(const Operand &rhs) { return (*new Operand(rhs)); };
 
 	//PUBLIC GETTER
 	eOperandType				getType(void) const { return (this->_type); };
-	int 						getPrecision(void) const { return (0); };
+	int 						getPrecision(void) const {
+		switch (_type) {
+			case Int8:
+				return (Int8);
+			case Int16:
+				return (Int16);
+			case Int32:
+				return (Int32);
+			case Float:
+				return (Float);
+			case Double:
+				return (Double);
+		}
+		return (-1);
+	};
 	T							getValue(void) const { return (this->_value); };
 
 	//TO STRING METHOD

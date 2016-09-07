@@ -35,6 +35,8 @@ int										main(void) {
 	t6 = *t1 % *t2;
 	std::cout << t6->toString() << std::endl;
 
+	std::cout << t6->getPrecision() << std::endl;
+
 	delete t1;
 	delete t2;
 	delete t3;
