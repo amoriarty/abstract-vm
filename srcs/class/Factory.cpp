@@ -51,9 +51,11 @@ const IOperand				*Factory::createInt8(const std::string &value) const {
 	std::ostringstream		ss;
 
 	ss << number;
-	if (value.compare(ss.str()) != 0)
-		std::cout << "ERROR" << std::endl;
-	//TODO OVERFLOW EXCEPTION
+	if (value.compare(ss.str()) != 0) {
+		if (value.find('-') != std::string::npos)
+			throw Factory::Underflow();
+		throw Factory::Overflow();
+	}
 	return new Operand<char>(Int8, static_cast<char>(number));
 }
 
@@ -62,9 +64,11 @@ const IOperand				*Factory::createInt16(const std::string &value) const {
 	std::ostringstream		ss;
 
 	ss << number;
-	if (value.compare(ss.str()) != 0)
-		std::cout << "ERROR" << std::endl;
-	//TODO OVERFLOW EXCEPTION
+	if (value.compare(ss.str()) != 0) {
+		if (value.find('-') != std::string::npos)
+			throw Factory::Underflow();
+		throw Factory::Overflow();
+	}
 	return new Operand<short>(Int16, static_cast<short>(number));
 }
 
@@ -73,9 +77,11 @@ const IOperand				*Factory::createInt32(const std::string &value) const {
 	std::ostringstream		ss;
 
 	ss << number;
-	if (value.compare(ss.str()) != 0)
-		std::cout << "ERROR" << std::endl;
-	//TODO OVERFLOW EXCEPTION
+	if (value.compare(ss.str()) != 0) {
+		if (value.find('-') != std::string::npos)
+			throw Factory::Underflow();
+		throw Factory::Overflow();
+	}
 	return new Operand<int>(Int32, number);
 }
 
@@ -84,9 +90,11 @@ const IOperand				*Factory::createFloat(const std::string &value) const {
 	std::ostringstream		ss;
 
 	ss << number;
-	if (value.compare(ss.str()) != 0)
-		std::cout << "ERROR " << std::endl;
-	//TODO OVERFLOW EXCEPTION
+	if (value.compare(ss.str()) != 0) {
+		if (value.find('-') != std::string::npos)
+			throw Factory::Underflow();
+		throw Factory::Overflow();
+	}
 	return new Operand<float>(Float, static_cast<float>(number));
 }
 
@@ -95,8 +103,19 @@ const IOperand				*Factory::createDouble(const std::string &value) const {
 	std::ostringstream		ss;
 
 	ss << number;
-	if (value.compare(ss.str()) != 0)
-		std::cout << "ERROR " << ss << std::endl;
-	//TODO OVERFLOW EXCEPTION
+	if (value.compare(ss.str()) != 0) {
+		if (value.find('-') != std::string::npos)
+			throw Factory::Underflow();
+		throw Factory::Overflow();
+	}
 	return new Operand<double>(Double, number);
+}
+
+//EXCEPTION CLASS
+const char 					*Factory::Overflow::what(void) const throw() {
+	return ("Overflow on a value.");
+}
+
+const char 					*Factory::Underflow::what(void) const throw() {
+	return ("Underflow on a value.");
 }

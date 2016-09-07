@@ -30,13 +30,24 @@ class Factory {
 	const IOperand		*createFloat(const std::string &value) const;
 	const IOperand		*createDouble(const std::string &value) const;
 
+	//EXCEPTION CLASSES
+	class Overflow: public std::exception {
+		public:
+		const char 		*what(void) const throw();
+	};
+
+	class Underflow: public std::exception {
+	public:
+		const char 		*what(void) const throw();
+	};
+
 	public:
 	//PUBLIC CONSTRUCTOR AND DESTRUCTOR
 						Factory(void);
 						~Factory(void);
 
 	//PUBLIC FACTORY METHOD
-	const IOperand *createOperand(const eOperandType type, const std::string &value) const;
+	const IOperand 		*createOperand(const eOperandType type, const std::string &value) const;
 };
 
 #endif

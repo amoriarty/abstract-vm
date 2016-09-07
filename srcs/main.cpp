@@ -38,8 +38,12 @@ int										main(void) {
 	std::cout << "Min Limit double " << std::numeric_limits<double>::min() << std::endl;
 	std::cout << "Max Limit double " << std::numeric_limits<double>::max() << std::endl;
 
-	n = manufactory.createOperand(Float, "1.17549e-500");
-	std::cout << n->toString() << std::endl;
+	try {
+		n = manufactory.createOperand(Float, "1.17549e+500");
+		std::cout << n->toString() << std::endl;
+	} catch (std::exception &e) {
+		std::cout << "Error: " << e.what() << std::endl;
+	}
 
 	return (EXIT_SUCCESS);
 }
