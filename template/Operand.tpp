@@ -20,65 +20,75 @@ class Operand : public IOperand {
 	T							_value;
 
 	//PRIVATE CONSTRUCTOR
-								Operand(void) : _type(Int8), _value(0) {};
+	Operand(void) : _type(Int8), _value(0) {};
 
-public:
-	//PUBLIC CONSTRUCTOR
-								Operand(const eOperandType type, const T value) : _type(type), _value(value) {};
-								Operand(const Operand &rhs) : _type(rhs.getType()), _value(rhs.getValue()) {};
-								~Operand(void) {};
-	Operand 					&operator=(const Operand &rhs) { return (*new Operand(rhs)); };
+	public:
+		//PUBLIC CONSTRUCTOR
+		Operand(const eOperandType type, const T value) : _type(type), _value(value) {};
+		Operand(const Operand &rhs) : _type(rhs.getType()), _value(rhs.getValue()) {};
+		~Operand(void) {};
+		Operand &
+		operator=(const Operand &rhs) { return (*new Operand(rhs)); };
 
-	//PUBLIC GETTER
-	eOperandType				getType(void) const { return (this->_type); };
-	int 						getPrecision(void) const { return (_type); };
-	T							getValue(void) const { return (this->_value); };
+		//PUBLIC GETTER
+		eOperandType
+		getType(void) const { return (this->_type); };
+		int
+		getPrecision(void) const { return (_type); };
+		T
+		getValue(void) const { return (this->_value); };
 
-	//TO STRING METHOD
-	const std::string			&toString(void) const {
-		std::ostringstream		ss;
+		//TO STRING METHOD
+		const std::string &
+		toString(void) const {
+			std::ostringstream		ss;
 
-		ss << this->_value;
-		return *new std::string(ss.str());
-	};
+			ss << this->_value;
+			return *new std::string(ss.str());
+		};
 
 
 
-	//OPERATOR OVERLOAD
-	const IOperand				*operator+(const IOperand &rhs) const {
-		const Operand<T>		&down = static_cast<const Operand<T> &>(rhs);
-		const Operand<T>		*final = new Operand<T>(_type, _value + down.getValue());
+		//OPERATOR OVERLOAD
+		const IOperand *
+		operator+(const IOperand &rhs) const {
+			const Operand<T>	&down = static_cast<const Operand<T> &>(rhs);
+			const Operand<T>	*final = new Operand<T>(_type, _value + down.getValue());
 
-		return (final);
-	};
+			return (final);
+		};
 
-	const IOperand				*operator-(const IOperand &rhs) const {
-		const Operand<T>		&down = static_cast<const Operand<T> &>(rhs);
-		const Operand<T>		*final = new Operand<T>(_type, _value - down.getValue());
+		const IOperand *
+		operator-(const IOperand &rhs) const {
+			const Operand<T>	&down = static_cast<const Operand<T> &>(rhs);
+			const Operand<T>	*final = new Operand<T>(_type, _value - down.getValue());
 
-		return (final);
-	};
+			return (final);
+		};
 
-	const IOperand				*operator*(const IOperand &rhs) const {
-		const Operand<T>		&down = static_cast<const Operand<T> &>(rhs);
-		const Operand<T>		*final = new Operand<T>(_type, _value * down.getValue());
+		const IOperand *
+		operator*(const IOperand &rhs) const {
+			const Operand<T>	&down = static_cast<const Operand<T> &>(rhs);
+			const Operand<T>	*final = new Operand<T>(_type, _value * down.getValue());
 
-		return (final);
-	};
+			return (final);
+		};
 
-	const IOperand				*operator/(const IOperand &rhs) const {
-		const Operand<T>		&down = static_cast<const Operand<T> &>(rhs);
-		const Operand<T>		*final = new Operand<T>(_type, _value / down.getValue());
+		const IOperand *
+		operator/(const IOperand &rhs) const {
+			const Operand<T>	&down = static_cast<const Operand<T> &>(rhs);
+			const Operand<T>	*final = new Operand<T>(_type, _value / down.getValue());
 
-		return (final);
-	};
+			return (final);
+		};
 
-	const IOperand				*operator%(const IOperand &rhs) const {
-		const Operand<T>		&down = static_cast<const Operand<T> &>(rhs);
-		const Operand<T>		*final = new Operand<T>(_type, _value - down.getValue());
+		const IOperand *
+		operator%(const IOperand &rhs) const {
+			const Operand<T>	&down = static_cast<const Operand<T> &>(rhs);
+			const Operand<T>	*final = new Operand<T>(_type, _value - down.getValue());
 
-		return (final);
-	};
+			return (final);
+		};
 };
 
 #endif

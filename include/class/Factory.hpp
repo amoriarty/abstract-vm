@@ -14,40 +14,52 @@
 # include "IOperand.hpp"
 # include "eOperandType.hpp"
 
+
 class Factory {
+	//TYPEDEF FOR OPERAND FUNCTION
+	typedef const IOperand *(Factory::*OperandFunc)(const std::string &) const;
+
 	//PRIVATE ATTRIBUTS
-	std::vector<const IOperand *(Factory::*)(const std::string &) const>	_map;
+	std::vector<OperandFunc> _func;
 
 	//PRIVATE CONSTRUCTOR
-	//TODO MAKE THEM PUBLIC
-						Factory(const Factory &rhs);
-	Factory				&operator=(const Factory &rhs) const;
+	Factory(const Factory &rhs);
+	Factory &
+	operator=(const Factory &rhs) const;
 
 	//PRIVATE FACTORY METHOD
-	const IOperand		*createInt8(const std::string &value) const;
-	const IOperand		*createInt16(const std::string &value) const;
-	const IOperand		*createInt32(const std::string &value) const;
-	const IOperand		*createFloat(const std::string &value) const;
-	const IOperand		*createDouble(const std::string &value) const;
+	const IOperand *
+	createInt8(const std::string &value) const;
+	const IOperand *
+	createInt16(const std::string &value) const;
+	const IOperand *
+	createInt32(const std::string &value) const;
+	const IOperand *
+	createFloat(const std::string &value) const;
+	const IOperand *
+	createDouble(const std::string &value) const;
 
 	//EXCEPTION CLASSES
 	class Overflow: public std::exception {
 		public:
-		const char 		*what(void) const throw();
+			const char *
+			what(void) const throw();
 	};
 
 	class Underflow: public std::exception {
-	public:
-		const char 		*what(void) const throw();
+		public:
+			const char *
+			what(void) const throw();
 	};
 
 	public:
-	//PUBLIC CONSTRUCTOR AND DESTRUCTOR
-						Factory(void);
-						~Factory(void);
+		//PUBLIC CONSTRUCTOR AND DESTRUCTOR
+		Factory(void);
+		~Factory(void);
 
-	//PUBLIC FACTORY METHOD
-	const IOperand 		*createOperand(const eOperandType type, const std::string &value) const;
+		//PUBLIC FACTORY METHOD
+		const IOperand*
+		createOperand(const eOperandType type, const std::string &value) const;
 };
 
 #endif
