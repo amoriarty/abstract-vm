@@ -34,21 +34,7 @@ public:
 
 	//PUBLIC GETTER
 	eOperandType				getType(void) const { return (this->_type); };
-	int 						getPrecision(void) const {
-		switch (_type) {
-			case Int8:
-				return (Int8);
-			case Int16:
-				return (Int16);
-			case Int32:
-				return (Int32);
-			case Float:
-				return (Float);
-			case Double:
-				return (Double);
-		}
-		return (-1);
-	};
+	int 						getPrecision(void) const { return (_type); };
 	T							getValue(void) const { return (this->_value); };
 
 	//TO STRING METHOD
