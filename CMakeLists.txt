@@ -5,9 +5,10 @@ set(CMAKE_CXX_COMPILER  "/usr/bin/clang++")
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror")
 
 include_directories(include)
+include_directories(include/class)
 include_directories(interface)
 include_directories(template)
 
 add_executable(abstract-vm
 		srcs/main.cpp
-		template/Operand.tpp)
+		template/Operand.tpp srcs/class/Factory.cpp)

@@ -13,7 +13,6 @@
 # include <sstream>
 # include "IOperand.hpp"
 
-//TODO USE THE TYPENAME
 template <typename T>
 class Operand : public IOperand {
 	//PRIVATE ATTRIBUTS
@@ -22,8 +21,6 @@ class Operand : public IOperand {
 
 	//PRIVATE CONSTRUCTOR
 								Operand(void) : _type(Int8), _value(0) {};
-
-	//PRIVATE OVERLOAD
 
 public:
 	//PUBLIC CONSTRUCTOR
@@ -82,7 +79,6 @@ public:
 
 		return (final);
 	};
-	//TODO FACTORY METHOD
 };
 
 #endif
