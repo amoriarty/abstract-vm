@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include "Factory.hpp"
+#include "Exceptions.hpp"
 #include "Operand.tpp"
 
 //PUBLIC CONSTRUCTOR
@@ -51,8 +52,8 @@ Factory::createInt8(const std::string &value) const {
 	ss << number;
 	if (value.compare(ss.str()) != 0) {
 		if (value.find('-') != std::string::npos)
-			throw Factory::Underflow();
-		throw Factory::Overflow();
+			throw Exceptions::Underflow();
+		throw Exceptions::Overflow();
 	}
 	return new Operand<char>(Int8, static_cast<char>(number));
 }
@@ -65,8 +66,8 @@ Factory::createInt16(const std::string &value) const {
 	ss << number;
 	if (value.compare(ss.str()) != 0) {
 		if (value.find('-') != std::string::npos)
-			throw Factory::Underflow();
-		throw Factory::Overflow();
+			throw Exceptions::Underflow();
+		throw Exceptions::Overflow();
 	}
 	return new Operand<short>(Int16, static_cast<short>(number));
 }
@@ -79,8 +80,8 @@ Factory::createInt32(const std::string &value) const {
 	ss << number;
 	if (value.compare(ss.str()) != 0) {
 		if (value.find('-') != std::string::npos)
-			throw Factory::Underflow();
-		throw Factory::Overflow();
+			throw Exceptions::Underflow();
+		throw Exceptions::Overflow();
 	}
 	return new Operand<int>(Int32, number);
 }
@@ -93,8 +94,8 @@ Factory::createFloat(const std::string &value) const {
 	ss << number;
 	if (value.compare(ss.str()) != 0) {
 		if (value.find('-') != std::string::npos)
-			throw Factory::Underflow();
-		throw Factory::Overflow();
+			throw Exceptions::Underflow();
+		throw Exceptions::Overflow();
 	}
 	return new Operand<float>(Float, static_cast<float>(number));
 }
@@ -107,19 +108,8 @@ Factory::createDouble(const std::string &value) const {
 	ss << number;
 	if (value.compare(ss.str()) != 0) {
 		if (value.find('-') != std::string::npos)
-			throw Factory::Underflow();
-		throw Factory::Overflow();
+			throw Exceptions::Underflow();
+		throw Exceptions::Overflow();
 	}
 	return new Operand<double>(Double, number);
-}
-
-//EXCEPTION CLASS
-const char *
-Factory::Overflow::what(void) const throw() {
-	return ("Overflow on a value.");
-}
-
-const char *
-Factory::Underflow::what(void) const throw() {
-	return ("Underflow on a value.");
 }

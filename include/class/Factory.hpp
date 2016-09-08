@@ -39,19 +39,6 @@ class Factory {
 	const IOperand *
 	createDouble(const std::string &value) const;
 
-	//EXCEPTION CLASSES
-	class Overflow: public std::exception {
-		public:
-			const char *
-			what(void) const throw();
-	};
-
-	class Underflow: public std::exception {
-		public:
-			const char *
-			what(void) const throw();
-	};
-
 	public:
 		//PUBLIC CONSTRUCTOR AND DESTRUCTOR
 		Factory(void);

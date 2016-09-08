@@ -11,4 +11,4 @@ include_directories(template)
 
 add_executable(abstract-vm
 		srcs/main.cpp
-		template/Operand.tpp srcs/class/Factory.cpp)
+		template/Operand.tpp srcs/class/Factory.cpp srcs/class/Exceptions.cpp)
