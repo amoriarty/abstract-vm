@@ -11,6 +11,7 @@ Exceptions::~Exceptions(void) {}
 Exceptions					&Exceptions::operator=(const Exceptions &rhs) {
 	return (*new Exceptions(rhs));
 }
+
 const char *
 Exceptions::Overflow::what(void) const throw() {
 	return ("Overflow on a value.");
