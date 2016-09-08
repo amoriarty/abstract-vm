@@ -47,8 +47,6 @@ class Operand : public IOperand {
 			return *new std::string(ss.str());
 		};
 
-
-
 		//OPERATOR OVERLOAD
 		const IOperand *
 		operator+(const IOperand &rhs) const {
