@@ -14,6 +14,9 @@
 #include "Operand.tpp"
 #include "Factory.hpp"
 
+//TODO POUR LA PROCHAINE FOIS
+// TU ES EN TRAIN DE FAIRE LE PARSEUR MAIS TU AS JUSTE APRIS A LIRE RAPIDEMENT UN FICHIER !
+
 int										main(int ac, char **av) {
 	std::ifstream						file;
 	char 								line[256];
