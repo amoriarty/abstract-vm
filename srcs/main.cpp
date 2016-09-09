@@ -9,41 +9,21 @@
 //
 
 #include <iostream>
-#include <vector>
-#include <map>
+#include <fstream>
+#include "Parser.hpp"
 #include "Operand.tpp"
 #include "Factory.hpp"
-#include "eOperandType.hpp"
-#include <limits>
 
-void									dump(IOperand *operand)
-{
-	std::cout << operand->toString() << std::endl;
-}
+int										main(int ac, char **av) {
+	std::ifstream						file;
+	char 								line[256];
 
-
-
-int										main(void) {
-	Factory								manufactory;
-	const IOperand						*n;
-
-	std::cout << "Min Limit char " << std::numeric_limits<char>::min() << std::endl;
-	std::cout << "Max Limit char " << std::numeric_limits<char>::max() << std::endl;
-	std::cout << "Min Limit short " << std::numeric_limits<short>::min() << std::endl;
-	std::cout << "Max Limit short " << std::numeric_limits<short>::max() << std::endl;
-	std::cout << "Min Limit int " << std::numeric_limits<int>::min() << std::endl;
-	std::cout << "Max Limit int " << std::numeric_limits<int>::max() << std::endl;
-	std::cout << "Min Limit float " << std::numeric_limits<float>::min() << std::endl;
-	std::cout << "Max Limit float " << std::numeric_limits<float>::max() << std::endl;
-	std::cout << "Min Limit double " << std::numeric_limits<double>::min() << std::endl;
-	std::cout << "Max Limit double " << std::numeric_limits<double>::max() << std::endl;
-
-	try {
-		n = manufactory.createOperand(Float, "1.17549e+500");
-		std::cout << n->toString() << std::endl;
-	} catch (std::exception &e) {
-		std::cout << "Error: " << e.what() << std::endl;
+	if (ac == 2)
+	{
+		file.open(av[1]);
+		while (file.getline(line, 256))
+			std::cout << line << std::endl;
+		file.close();
 	}
-
 	return (EXIT_SUCCESS);
 }
