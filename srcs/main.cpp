@@ -18,15 +18,22 @@
 // TU ES EN TRAIN DE FAIRE LE PARSEUR MAIS TU AS JUSTE APRIS A LIRE RAPIDEMENT UN FICHIER !
 
 int										main(int ac, char **av) {
-	std::ifstream						file;
-	char 								line[256];
+	Parser								parser;
+	const std::vector<std::string *>	*command_list = NULL;
+	std::vector<std::string *>::const_iterator	it;
+	std::vector<std::string *>::const_iterator	ite;
 
-	if (ac == 2)
-	{
-		file.open(av[1]);
-		while (file.getline(line, 256))
-			std::cout << line << std::endl;
-		file.close();
+	try {
+		if (ac == 2) {
+			command_list = parser.readFile(av[1]);
+			it = command_list->begin();
+			ite = command_list->end();
+			while (it != ite)
+				std::cout << **(it++) << std::endl;
+		}
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
 	}
+
 	return (EXIT_SUCCESS);
 }
