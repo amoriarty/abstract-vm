@@ -16,7 +16,8 @@ enum eCommandType {
 	DIV,
 	MOD,
 	PRINT,
-	EXIT
+	EXIT,
+	ERROR
 };
 
 #endif

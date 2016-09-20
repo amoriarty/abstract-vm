@@ -2,6 +2,8 @@
 // Created by Alexandre LEGENT on 9/20/16.
 //
 
+#include "Parser.hpp"
+#include "Exceptions.hpp"
 #include "IOperand.hpp"
 #include "Calculator.hpp"
 
@@ -14,12 +16,22 @@ Calculator							Calculator::operator=(const Calculator &rhs) { return *new Calc
 Calculator::Calculator(const std::vector<std::string *> &command_list) : _command_list(&command_list) {}
 
 void 								Calculator::doMagic(void) {
+	Parser											parser;
 	std::vector<std::string *>::const_iterator		it;
 	std::vector<std::string *>::const_iterator		ite;
 
 	it = _command_list->begin();
 	ite = _command_list->end();
 	while (it != ite) {
+		switch (parser.getCommandType(**it)) {
+			case ERROR:
+				throw Exceptions::UnknownInstruction();
+			case DUMP:
+				this->dump();
+				break ;
+			default:
+				break ;
+		}
 		it++;
 	}
 }
