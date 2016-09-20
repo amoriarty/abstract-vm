@@ -17,6 +17,8 @@ enum eCommandType {
 	MOD,
 	PRINT,
 	EXIT,
+	END,
+	COMMENT,
 	ERROR
 };
 

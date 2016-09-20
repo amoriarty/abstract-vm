@@ -21,7 +21,10 @@ const std::vector<std::string *>		&Parser::readFile(const char *file_name) const
 
 	file.open(file_name);
 	while (file.getline(line, BUFF_SIZE))
-		command_list->push_back(new std::string(line));
+	{
+		if (strlen(line))
+			command_list->push_back(new std::string(line));
+	}
 	file.close();
 	delete [] (line);
 	return *command_list;
@@ -33,6 +36,8 @@ eCommandType							Parser::getCommandType(const std::string &str) const throw() 
 		return PUSH;
 	if (str.substr(0, 6) == "assert")
 		return ASSERT;
+	if (str.substr(0, 2) == "; ")
+		return COMMENT;
 	if (str == "pop")
 		return POP;
 	if (str == "dump")
@@ -51,5 +56,7 @@ eCommandType							Parser::getCommandType(const std::string &str) const throw() 
 		return PRINT;
 	if (str == "exit")
 		return EXIT;
+	if (str == ";;")
+		return END;
 	return ERROR;
 }
