@@ -42,7 +42,6 @@ Factory::createOperand(const eOperandType type, std::string const &value) const 
 	return (this->*(this->_func[type]))(value);
 }
 
-
 //PRIVATE METHOD
 const IOperand *
 Factory::createInt8(const std::string &value) const {

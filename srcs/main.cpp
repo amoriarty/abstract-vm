@@ -13,22 +13,20 @@
 #include "Parser.hpp"
 #include "Operand.tpp"
 #include "Factory.hpp"
+#include "Calculator.hpp"
 
-//TODO POUR LA PROCHAINE FOIS
-// TU ES EN TRAIN DE FAIRE LE PARSEUR MAIS TU AS JUSTE APRIS A LIRE RAPIDEMENT UN FICHIER !
+//TODO STD::VECTOR<STD::STRING *>				_command_list -> CONST STD::STRING
 
 int												main(int ac, char **av) {
 	Parser										parser;
-	std::vector<std::string *>::const_iterator	it;
-	std::vector<std::string *>::const_iterator	ite;
+	Operand<int>								*operand = new Operand<int>(Int8, 42);
 
 	try {
 		if (ac == 2) {
-			const std::vector<std::string *>	&command_list = parser.readFile(av[1]);
-			it = command_list.begin();
-			ite = command_list.end();
-			while (it != ite)
-				std::cout << **(it++) << std::endl;
+			Calculator							calculator(parser.readFile(av[1]));
+
+			calculator.push(operand);
+			calculator.dump();
 		}
 	} catch (std::exception &e) {
 		std::cout << "Error: ";

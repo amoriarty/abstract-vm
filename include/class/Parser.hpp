@@ -10,11 +10,12 @@
 
 class Parser {
 
+											Parser(const Parser &rhs);
+	Parser									&operator=(const Parser &rhs);
+
 	public:
 											Parser(void);
-											Parser(const Parser &rhs);
 											~Parser(void);
-	Parser									&operator=(const Parser &rhs);
 
 	const std::vector<std::string *>		&readFile(const char *file_name) const;
 
