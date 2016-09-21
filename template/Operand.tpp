@@ -87,6 +87,7 @@ class Operand : public IOperand {
 			return (NULL);
 		}
 
+		//TODO CHECK IT
 		const IOperand *
 		operator-(const IOperand &rhs) const {
 			const Operand<T>	*down = NULL;
@@ -96,7 +97,7 @@ class Operand : public IOperand {
 
 			if (_type == rhs.getPrecision()) {
 				down = static_cast<const Operand<T> *>(&rhs);
-				return (new Operand<T>(_type, _value + down->getValue()));
+				return (new Operand<T>(_type, _value - down->getValue()));
 			}
 			else {
 				if (_type > rhs.getPrecision())
@@ -121,6 +122,7 @@ class Operand : public IOperand {
 			return (NULL);
 		}
 
+		//TODO CHECK IT
 		const IOperand *
 		operator*(const IOperand &rhs) const {
 			const Operand<T>	*down = NULL;
@@ -130,7 +132,7 @@ class Operand : public IOperand {
 
 			if (_type == rhs.getPrecision()) {
 				down = static_cast<const Operand<T> *>(&rhs);
-				return (new Operand<T>(_type, _value + down->getValue()));
+				return (new Operand<T>(_type, _value * down->getValue()));
 			}
 			else {
 				if (_type > rhs.getPrecision())
@@ -156,6 +158,7 @@ class Operand : public IOperand {
 		}
 
 		//TODO DIVISION BY 0
+		//TODO CHECK IT
 		const IOperand *
 		operator/(const IOperand &rhs) const {
 			const Operand<T>	*down = NULL;
@@ -165,7 +168,7 @@ class Operand : public IOperand {
 
 			if (_type == rhs.getPrecision()) {
 				down = static_cast<const Operand<T> *>(&rhs);
-				return (new Operand<T>(_type, _value + down->getValue()));
+				return (new Operand<T>(_type, _value / down->getValue()));
 			}
 			else {
 				if (_type > rhs.getPrecision())
@@ -191,11 +194,12 @@ class Operand : public IOperand {
 		}
 
 		//TODO MODULO BY 0
+		//TODO CHECK IT
 		const IOperand *
 		operator%(const IOperand &rhs) const {
 			return (&rhs);
 		}
-	/*
+		/*
 		const IOperand *
 		operator%(const IOperand &rhs) const {
 			const Operand<T>	*down = NULL;
@@ -220,7 +224,7 @@ class Operand : public IOperand {
 						break ;
 					case Float:
 					case Double:
-						id = std::stod(rhs.toString()) % _value;
+						//id = std::stod(rhs.toString()) % _value;
 						break ;
 					case Error:
 						break ;
@@ -229,8 +233,7 @@ class Operand : public IOperand {
 			}
 			return (NULL);
 		}
-	*/
-
+		*/
 };
 
 #endif

@@ -3,7 +3,7 @@
 ; -------------
 
 push int8(44)
-push float(42)
+push float(42.42)
 
 add
 
