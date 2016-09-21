@@ -1,0 +1,12 @@
+; -------------
+; test.avm -
+; -------------
+
+push int8(44)
+push float(42)
+
+add
+
+dump
+
+exit

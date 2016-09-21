@@ -12,12 +12,14 @@
 # define OPERAND_TPP
 # include <sstream>
 # include "IOperand.hpp"
+# include "Factory.hpp"
 
 template <typename T>
 class Operand : public IOperand {
 	//PRIVATE ATTRIBUTS
 	const eOperandType			_type;
 	T							_value;
+	Factory						_factory;
 
 	//PRIVATE CONSTRUCTOR
 	Operand(void) : _type(Int8), _value(0) {};
@@ -43,50 +45,192 @@ class Operand : public IOperand {
 		toString(void) const {
 			std::ostringstream		ss;
 
-			ss << this->_value;
+			if (this->_type == Int8)
+				ss << static_cast<int>(this->_value);
+			else
+				ss << this->_value;
 			return *new std::string(ss.str());
 		};
 
 		//OPERATOR OVERLOAD
 		const IOperand *
 		operator+(const IOperand &rhs) const {
-			const Operand<T>	&down = static_cast<const Operand<T> &>(rhs);
-			const Operand<T>	*final = new Operand<T>(_type, _value + down.getValue());
+			const Operand<T>	*down = NULL;
+			eOperandType 		type;
+			int					iv = 0;
+			double 				id = 0;
 
-			return (final);
-		};
+			if (_type == rhs.getPrecision()) {
+				down = static_cast<const Operand<T> *>(&rhs);
+				return (new Operand<T>(_type, _value + down->getValue()));
+			}
+			else {
+				if (_type > rhs.getPrecision())
+					type = _type;
+				else
+					type = rhs.getType();
+				switch (type) {
+					case Int8:
+					case Int16:
+					case Int32:
+						iv = std::stoi(rhs.toString()) + _value;
+						break ;
+					case Float:
+					case Double:
+						id = std::stod(rhs.toString()) + _value;
+						break ;
+					case Error:
+						break ;
+				}
+				return (_factory.createOperand(type, std::to_string((iv) ? iv : id)));
+			}
+			return (NULL);
+		}
 
 		const IOperand *
 		operator-(const IOperand &rhs) const {
-			const Operand<T>	&down = static_cast<const Operand<T> &>(rhs);
-			const Operand<T>	*final = new Operand<T>(_type, _value - down.getValue());
+			const Operand<T>	*down = NULL;
+			eOperandType 		type;
+			int					iv = 0;
+			double 				id = 0;
 
-			return (final);
-		};
+			if (_type == rhs.getPrecision()) {
+				down = static_cast<const Operand<T> *>(&rhs);
+				return (new Operand<T>(_type, _value + down->getValue()));
+			}
+			else {
+				if (_type > rhs.getPrecision())
+					type = _type;
+				else
+					type = rhs.getType();
+				switch (type) {
+					case Int8:
+					case Int16:
+					case Int32:
+						iv = std::stoi(rhs.toString()) - _value;
+						break ;
+					case Float:
+					case Double:
+						id = std::stod(rhs.toString()) - _value;
+						break ;
+					case Error:
+						break ;
+				}
+				return (_factory.createOperand(type, std::to_string((iv) ? iv : id)));
+			}
+			return (NULL);
+		}
 
 		const IOperand *
 		operator*(const IOperand &rhs) const {
-			const Operand<T>	&down = static_cast<const Operand<T> &>(rhs);
-			const Operand<T>	*final = new Operand<T>(_type, _value * down.getValue());
+			const Operand<T>	*down = NULL;
+			eOperandType 		type;
+			int					iv = 0;
+			double 				id = 0;
 
-			return (final);
-		};
+			if (_type == rhs.getPrecision()) {
+				down = static_cast<const Operand<T> *>(&rhs);
+				return (new Operand<T>(_type, _value + down->getValue()));
+			}
+			else {
+				if (_type > rhs.getPrecision())
+					type = _type;
+				else
+					type = rhs.getType();
+				switch (type) {
+					case Int8:
+					case Int16:
+					case Int32:
+						iv = std::stoi(rhs.toString()) * _value;
+						break ;
+					case Float:
+					case Double:
+						id = std::stod(rhs.toString()) * _value;
+						break ;
+					case Error:
+						break ;
+				}
+				return (_factory.createOperand(type, std::to_string((iv) ? iv : id)));
+			}
+			return (NULL);
+		}
 
+		//TODO DIVISION BY 0
 		const IOperand *
 		operator/(const IOperand &rhs) const {
-			const Operand<T>	&down = static_cast<const Operand<T> &>(rhs);
-			const Operand<T>	*final = new Operand<T>(_type, _value / down.getValue());
+			const Operand<T>	*down = NULL;
+			eOperandType 		type;
+			int					iv = 0;
+			double 				id = 0;
 
-			return (final);
-		};
+			if (_type == rhs.getPrecision()) {
+				down = static_cast<const Operand<T> *>(&rhs);
+				return (new Operand<T>(_type, _value + down->getValue()));
+			}
+			else {
+				if (_type > rhs.getPrecision())
+					type = _type;
+				else
+					type = rhs.getType();
+				switch (type) {
+					case Int8:
+					case Int16:
+					case Int32:
+						iv = std::stoi(rhs.toString()) / _value;
+						break ;
+					case Float:
+					case Double:
+						id = std::stod(rhs.toString()) / _value;
+						break ;
+					case Error:
+						break ;
+				}
+				return (_factory.createOperand(type, std::to_string((iv) ? iv : id)));
+			}
+			return (NULL);
+		}
 
+		//TODO MODULO BY 0
 		const IOperand *
 		operator%(const IOperand &rhs) const {
-			const Operand<T>	&down = static_cast<const Operand<T> &>(rhs);
-			const Operand<T>	*final = new Operand<T>(_type, _value - down.getValue());
+			return (&rhs);
+		}
+	/*
+		const IOperand *
+		operator%(const IOperand &rhs) const {
+			const Operand<T>	*down = NULL;
+			eOperandType 		type;
+			int					iv = 0;
+			double 				id = 0;
 
-			return (final);
-		};
+			if (_type == rhs.getPrecision()) {
+				down = static_cast<const Operand<T> *>(&rhs);
+				return (new Operand<T>(_type, _value + down->getValue()));
+			}
+			else {
+				if (_type > rhs.getPrecision())
+					type = _type;
+				else
+					type = rhs.getType();
+				switch (type) {
+					case Int8:
+					case Int16:
+					case Int32:
+						iv = std::stoi(rhs.toString()) % _value;
+						break ;
+					case Float:
+					case Double:
+						id = std::stod(rhs.toString()) % _value;
+						break ;
+					case Error:
+						break ;
+				}
+				return (_factory.createOperand(type, std::to_string((iv) ? iv : id)));
+			}
+			return (NULL);
+		}
+	*/
+
 };
 
 #endif

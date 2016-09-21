@@ -25,12 +25,14 @@ class Calculator {
 								Calculator(const std::vector<std::string *> &command_list);
 								~Calculator(void);
 
+	//EXCUTING SCRIPT
+	void 						doMagic(void);
 	//CALCULATOR FUNCTIONS
 	void 						push(const std::string &str);
 	void 						pop(void);
 	void						dump(void) const;
 	void 						assert(const std::string &str) const;
-	void 						doMagic(void);
+	void 						add(void);
 };
 
 #endif

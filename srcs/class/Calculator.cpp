@@ -36,6 +36,9 @@ void 								Calculator::doMagic(void) {
 				break ;
 			case ASSERT:
 				this->assert(**it);
+			case ADD:
+				this->add();
+				break ;
 			default:
 				break ;
 		}
@@ -49,7 +52,7 @@ void 								Calculator::push(const std::string &str) {
 
 	switch (openrand_type) {
 		case Error:
-			throw Exceptions::UnknownInstruction();
+			throw Exceptions::Syntax();
 		default:
 			_operand_table.push_back(_factory.createOperand(openrand_type, value));
 			break ;
@@ -62,14 +65,6 @@ void								Calculator::pop(void) {
 	_operand_table.pop_back();
 }
 
-void 								Calculator::assert(const std::string &str) const {
-	std::string						value = _parser.getOperandValue(str);
-	const IOperand					&operand = **(_operand_table.rbegin());
-
-	if (value != operand.toString())
-		throw Exceptions::AssertError();
-}
-
 void								Calculator::dump(void) const {
 	std::vector<const IOperand *>::const_reverse_iterator	it;
 	std::vector<const IOperand *>::const_reverse_iterator	ite;
@@ -80,4 +75,26 @@ void								Calculator::dump(void) const {
 		std::cout << (*it)->toString() << std::endl;
 		it++;
 	}
+}
+
+void 								Calculator::assert(const std::string &str) const {
+	std::string						value = _parser.getOperandValue(str);
+	const IOperand					&operand = **(_operand_table.rbegin());
+
+	if (value != operand.toString())
+		throw Exceptions::AssertError();
+}
+
+//TODO LE ADD NE FONCTIONNE PAS DU TOUT !
+void								Calculator::add(void) {
+	const IOperand					*o1 = NULL;
+	const IOperand					*o2 = NULL;
+
+	if (_operand_table.size() < 2)
+		throw Exceptions::OperationOnEmptyStack();
+	o1 = *(_operand_table.rbegin());
+	_operand_table.pop_back();
+	o2 = *(_operand_table.rbegin());
+	_operand_table.pop_back();
+	_operand_table.push_back(*o1 + *o2);
 }
