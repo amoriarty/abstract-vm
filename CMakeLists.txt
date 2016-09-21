@@ -14,4 +14,5 @@ add_executable(abstract-vm
 		template/Operand.tpp
 		srcs/class/Factory.cpp
 		srcs/class/Exceptions.cpp
-		srcs/class/Parser.cpp srcs/class/Calculator.cpp include/eCommandType.hpp)
+		srcs/class/Parser.cpp
+		srcs/class/Calculator.cpp)

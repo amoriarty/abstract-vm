@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <regex>
+#include <eOperandType.hpp>
 #include "Parser.hpp"
 
 //CONSTRUCTOR
@@ -31,7 +32,7 @@ const std::vector<std::string *>		&Parser::readFile(const char *file_name) const
 }
 
 //LEXER
-eCommandType							Parser::getCommandType(const std::string &str) const throw() {
+eCommandType							Parser::getCommandType(const std::string &str) const {
 	if (str.substr(0, 4) == "push")
 		return PUSH;
 	if (str.substr(0, 6) == "assert")
@@ -59,4 +60,26 @@ eCommandType							Parser::getCommandType(const std::string &str) const throw() 
 	if (str == ";;")
 		return END;
 	return ERROR;
+}
+
+eOperandType							Parser::getOperandType(const std::string &str) const {
+	std::string							operand_type = str.substr(str.find(' ') + 1, str.size());
+
+	if (operand_type.substr(0, 4) == "int8")
+		return Int8;
+	if (operand_type.substr(0, 5) == "int16")
+		return Int16;
+	if (operand_type.substr(0, 5) == "int32")
+		return Int32;
+	if (operand_type.substr(0, 5) == "float")
+		return Float;
+	if (operand_type.substr(0, 6) == "double")
+		return Double;
+	return Error;
+}
+
+std::string								Parser::getOperandValue(const std::string &str) const {
+	std::string							operand_value = str.substr(str.find('(') + 1, str.size());
+
+	return operand_value.substr(0, operand_value.find(')'));
 }

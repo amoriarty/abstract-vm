@@ -6,9 +6,11 @@
 # define PARSER_HPP
 # include <vector>
 # include "eCommandType.hpp"
+# include "eOperandType.hpp"
 
 # define BUFF_SIZE 256
 
+//TODO CHANGE TO NAMESPACE
 class Parser {
 
 											Parser(const Parser &rhs);
@@ -22,7 +24,9 @@ class Parser {
 	const std::vector<std::string *>		&readFile(const char *file_name) const;
 
 	//LEXER
-	eCommandType							getCommandType(const std::string &str) const throw();
+	eCommandType							getCommandType(const std::string &str) const;
+	eOperandType 							getOperandType(const std::string &str) const;
+	std::string								getOperandValue(const std::string &str) const;
 };
 
 #endif

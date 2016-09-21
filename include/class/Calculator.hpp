@@ -6,12 +6,15 @@
 # define CALCULATOR_HPP
 # include <iostream>
 # include <vector>
+# include "Factory.hpp"
 
 class Calculator {
 
 	//PRIVATE ATTRIBUT
+	const Factory						_factory;
+	const Parser						_parser;
 	const std::vector<std::string *>	*_command_list;
-	std::vector<IOperand *>				_operand_table;
+	std::vector<const IOperand *>		_operand_table;
 
 
 								Calculator(void);
@@ -23,7 +26,7 @@ class Calculator {
 								~Calculator(void);
 
 	//CALCULATOR FUNCTIONS
-	void 						push(IOperand *operand);
+	void 						push(const std::string &str);
 	void						dump(void) const;
 	void 						doMagic(void);
 };
