@@ -29,6 +29,7 @@ class Calculator {
 	void 						push(const std::string &str);
 	void 						pop(void);
 	void						dump(void) const;
+	void 						assert(const std::string &str) const;
 	void 						doMagic(void);
 };
 

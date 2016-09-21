@@ -37,7 +37,7 @@ eCommandType							Parser::getCommandType(const std::string &str) const {
 		return PUSH;
 	if (str.substr(0, 6) == "assert")
 		return ASSERT;
-	if (str.substr(0, 2) == "; ")
+	if (str.substr(0, 1) == ";")
 		return COMMENT;
 	if (str == "pop")
 		return POP;

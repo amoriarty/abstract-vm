@@ -34,6 +34,8 @@ void 								Calculator::doMagic(void) {
 			case POP:
 				this->pop();
 				break ;
+			case ASSERT:
+				this->assert(**it);
 			default:
 				break ;
 		}
@@ -58,6 +60,14 @@ void								Calculator::pop(void) {
 	if (_operand_table.empty())
 		throw Exceptions::PopOnEmptyStack();
 	_operand_table.pop_back();
+}
+
+void 								Calculator::assert(const std::string &str) const {
+	std::string						value = _parser.getOperandValue(str);
+	const IOperand					&operand = **(_operand_table.rbegin());
+
+	if (value != operand.toString())
+		throw Exceptions::AssertError();
 }
 
 void								Calculator::dump(void) const {
