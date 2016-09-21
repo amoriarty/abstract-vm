@@ -5,6 +5,7 @@
 #include "Parser.hpp"
 #include "Exceptions.hpp"
 #include "IOperand.hpp"
+#include "Operand.tpp"
 #include "Calculator.hpp"
 
 Calculator::Calculator(void) : _command_list(NULL) {}
@@ -51,6 +52,9 @@ void 								Calculator::doMagic(void) {
 				break ;
 			case MOD:
 				this->mod();
+				break ;
+			case PRINT:
+				this->print();
 				break ;
 			default:
 				break ;
@@ -161,4 +165,17 @@ void 								Calculator::mod(void) {
 	o2 = *(_operand_table.rbegin());
 	_operand_table.pop_back();
 	_operand_table.push_back(*o1 % *o2);
+}
+
+void 								Calculator::print(void) const {
+	const IOperand					*ioperand = NULL;
+	const Operand<char>				*operand = NULL;
+
+	if (_operand_table.empty())
+		throw Exceptions::PrintOnEmptyStack();
+	ioperand = *(_operand_table.rbegin());
+	if (ioperand->getType() != Int8)
+		throw Exceptions::PrintNonAscii();
+	operand = static_cast<const Operand<char> *>(ioperand);
+	std::cout << operand->getValue() << std::endl;
 }

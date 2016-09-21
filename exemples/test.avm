@@ -2,11 +2,8 @@
 ; test.avm -
 ; -------------
 
-push int8(44)
-push int32(42)
+push int8(42)
 
-mod
-
-dump
+print
 
 exit

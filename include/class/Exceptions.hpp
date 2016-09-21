@@ -56,6 +56,16 @@ namespace Exceptions {
 		public:
 			const char 				*what(void) const throw();
 	};
+
+	class PrintNonAscii: public std::exception {
+		public:
+			const char 				*what(void) const throw();
+	};
+
+	class PrintOnEmptyStack: public std::exception {
+		public:
+			const char 				*what(void) const throw();
+	};
 };
 
 #endif

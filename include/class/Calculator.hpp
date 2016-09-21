@@ -17,16 +17,11 @@ class Calculator {
 	std::vector<const IOperand *>		_operand_table;
 
 
+	//PRIVATE CONSTRUCTOR
 								Calculator(void);
 								Calculator(const Calculator &rhs);
 	Calculator                  operator=(const Calculator &rhs);
 
-	public:
-								Calculator(const std::vector<std::string *> &command_list);
-								~Calculator(void);
-
-	//EXCUTING SCRIPT
-	void 						doMagic(void);
 	//CALCULATOR FUNCTIONS
 	void 						push(const std::string &str);
 	void 						pop(void);
@@ -37,6 +32,15 @@ class Calculator {
 	void 						mul(void);
 	void 						div(void);
 	void 						mod(void);
+	void						print(void) const;
+
+	public:
+								Calculator(const std::vector<std::string *> &command_list);
+								~Calculator(void);
+
+	//EXCUTING SCRIPT
+		void					doMagic(void);
+
 };
 
 #endif

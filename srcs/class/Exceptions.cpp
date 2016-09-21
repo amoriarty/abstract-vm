@@ -45,11 +45,21 @@ Exceptions::AssertError::what(void) const throw() {
 }
 
 const char *
-Exceptions::OperationOnEmptyStack::what() const throw() {
+Exceptions::OperationOnEmptyStack::what(void) const throw() {
 	return ("Operation can't be done because the stack have less than two operands.");
 }
 
 const char *
-Exceptions::ModuloOnFloatingPoint::what() const throw() {
+Exceptions::ModuloOnFloatingPoint::what(void) const throw() {
 	return ("Can't make a modulo on floating point.");
+}
+
+const char *
+Exceptions::PrintNonAscii::what(void) const throw() {
+	return ("Try to print a non ascii character.");
+}
+
+const char *
+Exceptions::PrintOnEmptyStack::what(void) const throw() {
+	return ("Try to print on empty stack.");
 }
