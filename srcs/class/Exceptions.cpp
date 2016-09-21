@@ -48,3 +48,8 @@ const char *
 Exceptions::OperationOnEmptyStack::what() const throw() {
 	return ("Operation can't be done because the stack have less than two operands.");
 }
+
+const char *
+Exceptions::ModuloOnFloatingPoint::what() const throw() {
+	return ("Can't make a modulo on floating point.");
+}

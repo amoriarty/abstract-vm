@@ -18,7 +18,6 @@
 
 int												main(int ac, char **av) {
 	Parser										parser;
-	//Operand<int>								*operand = new Operand<int>(Int8, 42);
 
 	try {
 		if (ac == 2) {

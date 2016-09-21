@@ -13,6 +13,7 @@
 # include <sstream>
 # include "IOperand.hpp"
 # include "Factory.hpp"
+# include "Exceptions.hpp"
 
 template <typename T>
 class Operand : public IOperand {
@@ -219,8 +220,7 @@ class Operand : public IOperand {
 						break ;
 					case Float:
 					case Double:
-						id = static_cast<long int>(std::stod(rhs.toString())) % static_cast<long int>(_value);
-						break ;
+						throw Exceptions::ModuloOnFloatingPoint();
 					case Error:
 						break ;
 				}

@@ -51,6 +51,11 @@ namespace Exceptions {
 		public:
 			const char				*what(void) const throw();
 	};
+
+	class ModuloOnFloatingPoint: public std::exception {
+		public:
+			const char 				*what(void) const throw();
+	};
 };
 
 #endif

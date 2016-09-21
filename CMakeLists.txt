@@ -6,12 +6,12 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror")
 
 include_directories(include)
 include_directories(include/class)
-include_directories(interface)
-include_directories(template)
+include_directories(include/interface)
+include_directories(include/template)
 
 add_executable(abstract-vm
 		srcs/main.cpp
-		template/Operand.tpp
+		include/template/Operand.tpp
 		srcs/class/Factory.cpp
 		srcs/class/Exceptions.cpp
 		srcs/class/Parser.cpp
