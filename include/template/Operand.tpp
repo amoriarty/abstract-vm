@@ -156,8 +156,6 @@ class Operand : public IOperand {
 			return (NULL);
 		}
 
-		//TODO DIVISION BY 0
-		//TODO CHECK IT
 		const IOperand *
 		operator/(const IOperand &rhs) const {
 			const Operand<T>	*down = NULL;
@@ -196,8 +194,6 @@ class Operand : public IOperand {
 			return (NULL);
 		}
 
-		//TODO MODULO BY 0
-		//TODO CHECK IT
 		const IOperand *
 		operator%(const IOperand &rhs) const {
 			const Operand<T>	*down = NULL;
