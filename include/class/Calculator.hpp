@@ -27,6 +27,7 @@ class Calculator {
 
 	//CALCULATOR FUNCTIONS
 	void 						push(const std::string &str);
+	void 						pop(void);
 	void						dump(void) const;
 	void 						doMagic(void);
 };

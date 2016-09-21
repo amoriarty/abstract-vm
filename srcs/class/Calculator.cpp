@@ -30,6 +30,10 @@ void 								Calculator::doMagic(void) {
 				break ;
 			case PUSH:
 				this->push(**it);
+				break ;
+			case POP:
+				this->pop();
+				break ;
 			default:
 				break ;
 		}
@@ -50,12 +54,18 @@ void 								Calculator::push(const std::string &str) {
 	}
 }
 
-void								Calculator::dump(void) const {
-	std::vector<const IOperand *>::const_iterator			it;
-	std::vector<const IOperand *>::const_iterator			ite;
+void								Calculator::pop(void) {
+	if (_operand_table.empty())
+		throw Exceptions::PopOnEmptyStack();
+	_operand_table.pop_back();
+}
 
-	it = _operand_table.begin();
-	ite = _operand_table.end();
+void								Calculator::dump(void) const {
+	std::vector<const IOperand *>::const_reverse_iterator	it;
+	std::vector<const IOperand *>::const_reverse_iterator	ite;
+
+	it = _operand_table.rbegin();
+	ite = _operand_table.rend();
 	while (it != ite) {
 		std::cout << (*it)->toString() << std::endl;
 		it++;
