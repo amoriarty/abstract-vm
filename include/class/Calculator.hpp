@@ -33,6 +33,10 @@ class Calculator {
 	void						dump(void) const;
 	void 						assert(const std::string &str) const;
 	void 						add(void);
+	void 						sub(void);
+	void 						mul(void);
+	void 						div(void);
+	void 						mod(void);
 };
 
 #endif

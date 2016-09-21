@@ -3,9 +3,9 @@
 ; -------------
 
 push int8(44)
-push float(42.42)
+push int32(42)
 
-add
+mod
 
 dump
 

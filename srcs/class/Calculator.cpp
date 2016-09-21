@@ -22,6 +22,7 @@ void 								Calculator::doMagic(void) {
 	it = _command_list->begin();
 	ite = _command_list->end();
 	while (it != ite) {
+		//TODO REPLACE SWITCH BY FUNCTION VECTOR (LIKE FACTORY)
 		switch (_parser.getCommandType(**it)) {
 			case ERROR:
 				throw Exceptions::UnknownInstruction();
@@ -38,6 +39,18 @@ void 								Calculator::doMagic(void) {
 				this->assert(**it);
 			case ADD:
 				this->add();
+				break ;
+			case SUB:
+				this->sub();
+				break ;
+			case MUL:
+				this->mul();
+				break ;
+			case DIV:
+				this->div();
+				break ;
+			case MOD:
+				this->mod();
 				break ;
 			default:
 				break ;
@@ -85,7 +98,6 @@ void 								Calculator::assert(const std::string &str) const {
 		throw Exceptions::AssertError();
 }
 
-//TODO LE ADD NE FONCTIONNE PAS DU TOUT !
 void								Calculator::add(void) {
 	const IOperand					*o1 = NULL;
 	const IOperand					*o2 = NULL;
@@ -97,4 +109,56 @@ void								Calculator::add(void) {
 	o2 = *(_operand_table.rbegin());
 	_operand_table.pop_back();
 	_operand_table.push_back(*o1 + *o2);
+}
+
+void								Calculator::sub(void) {
+	const IOperand					*o1 = NULL;
+	const IOperand					*o2 = NULL;
+
+	if (_operand_table.size() < 2)
+		throw Exceptions::OperationOnEmptyStack();
+	o1 = *(_operand_table.rbegin());
+	_operand_table.pop_back();
+	o2 = *(_operand_table.rbegin());
+	_operand_table.pop_back();
+	_operand_table.push_back(*o1 - *o2);
+}
+
+void 								Calculator::mul(void) {
+	const IOperand					*o1 = NULL;
+	const IOperand					*o2 = NULL;
+
+	if (_operand_table.size() < 2)
+		throw Exceptions::OperationOnEmptyStack();
+	o1 = *(_operand_table.rbegin());
+	_operand_table.pop_back();
+	o2 = *(_operand_table.rbegin());
+	_operand_table.pop_back();
+	_operand_table.push_back(*o1 * *o2);
+}
+
+void								Calculator::div(void) {
+	const IOperand					*o1 = NULL;
+	const IOperand					*o2 = NULL;
+
+	if (_operand_table.size() < 2)
+		throw Exceptions::OperationOnEmptyStack();
+	o1 = *(_operand_table.rbegin());
+	_operand_table.pop_back();
+	o2 = *(_operand_table.rbegin());
+	_operand_table.pop_back();
+	_operand_table.push_back(*o1 / *o2);
+}
+
+void 								Calculator::mod(void) {
+	const IOperand					*o1 = NULL;
+	const IOperand					*o2 = NULL;
+
+	if (_operand_table.size() < 2)
+		throw Exceptions::OperationOnEmptyStack();
+	o1 = *(_operand_table.rbegin());
+	_operand_table.pop_back();
+	o2 = *(_operand_table.rbegin());
+	_operand_table.pop_back();
+	_operand_table.push_back(*o1 % *o2);
 }
