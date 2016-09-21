@@ -197,15 +197,10 @@ class Operand : public IOperand {
 		//TODO CHECK IT
 		const IOperand *
 		operator%(const IOperand &rhs) const {
-			return (&rhs);
-		}
-		/*
-		const IOperand *
-		operator%(const IOperand &rhs) const {
 			const Operand<T>	*down = NULL;
 			eOperandType 		type;
 			int					iv = 0;
-			double 				id = 0;
+			long int			id = 0;
 
 			if (_type == rhs.getPrecision()) {
 				down = static_cast<const Operand<T> *>(&rhs);
@@ -220,11 +215,11 @@ class Operand : public IOperand {
 					case Int8:
 					case Int16:
 					case Int32:
-						iv = std::stoi(rhs.toString()) % _value;
+						iv = static_cast<long int>(std::stoi(rhs.toString())) % static_cast<long int>(_value);
 						break ;
 					case Float:
 					case Double:
-						//id = std::stod(rhs.toString()) % _value;
+						id = static_cast<long int>(std::stod(rhs.toString())) % static_cast<long int>(_value);
 						break ;
 					case Error:
 						break ;
@@ -233,7 +228,6 @@ class Operand : public IOperand {
 			}
 			return (NULL);
 		}
-		*/
 };
 
 #endif
