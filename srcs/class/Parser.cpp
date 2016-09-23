@@ -6,6 +6,7 @@
 #include <fstream>
 #include <regex>
 #include <eOperandType.hpp>
+#include <class/Exceptions.hpp>
 #include "Parser.hpp"
 
 //CONSTRUCTOR
@@ -27,11 +28,14 @@ const std::vector<std::string *>		&Parser::readFile(const char *file_name) const
 			command_list->push_back(new std::string(line));
 	}
 	file.close();
+	if (strncmp(line, "exit", 4))
+		throw Exceptions::MissingExitInstruction();
 	delete [] (line);
 	return *command_list;
 }
 
 //LEXER
+//TODO JE RISQUE D'AVOIR UN PROBLEME ENTRE LES COMMENTAIRES ET LA FIN DES ENTREE (';;')
 eCommandType							Parser::getCommandType(const std::string &str) const {
 	if (str.substr(0, 4) == "push")
 		return PUSH;
