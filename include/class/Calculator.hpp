@@ -12,7 +12,6 @@ class Calculator {
 
 	//PRIVATE ATTRIBUT
 	const Factory						_factory;
-	const Parser						_parser;
 	const std::vector<std::string *>	*_command_list;
 	std::vector<const IOperand *>		_operand_table;
 

@@ -9,14 +9,7 @@
 #include <class/Exceptions.hpp>
 #include "Parser.hpp"
 
-//CONSTRUCTOR
-Parser::Parser(void) {}
-Parser::Parser(const Parser &rhs) { static_cast<void>(rhs); }
-Parser::~Parser(void) {}
-Parser					&Parser::operator=(const Parser &rhs) { return (*new Parser(rhs)); }
-
-//PARSER
-const std::vector<std::string *>		&Parser::readFile(const char *file_name) const {
+const std::vector<std::string *>		&Parser::readFile(const char *file_name) {
 	std::ifstream 					file;
 	std::vector<std::string *>		*command_list = new std::vector<std::string *>;
 	char 							*line = new char [BUFF_SIZE];
@@ -36,7 +29,7 @@ const std::vector<std::string *>		&Parser::readFile(const char *file_name) const
 
 //LEXER
 //TODO JE RISQUE D'AVOIR UN PROBLEME ENTRE LES COMMENTAIRES ET LA FIN DES ENTREE (';;')
-eCommandType							Parser::getCommandType(const std::string &str) const {
+eCommandType							Parser::getCommandType(const std::string &str) {
 	if (str.substr(0, 4) == "push")
 		return PUSH;
 	if (str.substr(0, 6) == "assert")
@@ -66,7 +59,7 @@ eCommandType							Parser::getCommandType(const std::string &str) const {
 	return ERROR;
 }
 
-eOperandType							Parser::getOperandType(const std::string &str) const {
+eOperandType							Parser::getOperandType(const std::string &str) {
 	std::string							operand_type = str.substr(str.find(' ') + 1, str.size());
 
 	if (operand_type.substr(0, 4) == "int8")
@@ -82,7 +75,7 @@ eOperandType							Parser::getOperandType(const std::string &str) const {
 	return Error;
 }
 
-std::string								Parser::getOperandValue(const std::string &str) const {
+std::string								Parser::getOperandValue(const std::string &str) {
 	std::string							operand_value = str.substr(str.find('(') + 1, str.size());
 
 	return operand_value.substr(0, operand_value.find(')'));

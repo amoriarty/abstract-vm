@@ -10,23 +10,14 @@
 
 # define BUFF_SIZE 256
 
-//TODO CHANGE TO NAMESPACE
-class Parser {
-
-											Parser(const Parser &rhs);
-	Parser									&operator=(const Parser &rhs);
-
-	public:
-											Parser(void);
-											~Parser(void);
-
+namespace Parser {
 	//PARSER
-	const std::vector<std::string *>		&readFile(const char *file_name) const;
+	const std::vector<std::string *>		&readFile(const char *file_name);
 
 	//LEXER
-	eCommandType							getCommandType(const std::string &str) const;
-	eOperandType 							getOperandType(const std::string &str) const;
-	std::string								getOperandValue(const std::string &str) const;
+	eCommandType							getCommandType(const std::string &str);
+	eOperandType 							getOperandType(const std::string &str);
+	std::string								getOperandValue(const std::string &str);
 };
 
 #endif

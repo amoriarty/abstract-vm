@@ -24,7 +24,7 @@ void 								Calculator::doMagic(void) {
 	ite = _command_list->end();
 	while (it != ite) {
 		//TODO REPLACE SWITCH BY FUNCTION VECTOR (LIKE FACTORY)
-		switch (_parser.getCommandType(**it)) {
+		switch (Parser::getCommandType(**it)) {
 			case ERROR:
 				throw Exceptions::UnknownInstruction();
 			case DUMP:
@@ -64,8 +64,8 @@ void 								Calculator::doMagic(void) {
 }
 
 void 								Calculator::push(const std::string &str) {
-	eOperandType 					openrand_type = _parser.getOperandType(str);
-	std::string						value = _parser.getOperandValue(str);
+	eOperandType 					openrand_type = Parser::getOperandType(str);
+	std::string						value = Parser::getOperandValue(str);
 
 	switch (openrand_type) {
 		case Error:
@@ -95,7 +95,7 @@ void								Calculator::dump(void) const {
 }
 
 void 								Calculator::assert(const std::string &str) const {
-	std::string						value = _parser.getOperandValue(str);
+	std::string						value = Parser::getOperandValue(str);
 	const IOperand					&operand = **(_operand_table.rbegin());
 
 	if (value != operand.toString())

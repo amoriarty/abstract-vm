@@ -17,11 +17,9 @@
 //TODO STD::VECTOR<STD::STRING *>				_command_list -> CONST STD::STRING
 
 int												main(int ac, char **av) {
-	Parser										parser;
-
 	try {
 		if (ac == 2) {
-			Calculator							calculator(parser.readFile(av[1]));
+			Calculator							calculator(Parser::readFile(av[1]));
 
 			calculator.doMagic();
 		}
