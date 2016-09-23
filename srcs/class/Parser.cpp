@@ -54,25 +54,25 @@ eCommandType							Parser::getCommandType(const std::string &str) {
 		return ASSERT;
 	if (str.substr(0, 1) == ";")
 		return COMMENT;
-	if (str == "pop")
+	if (str.substr(0, 3) == "pop")
 		return POP;
-	if (str == "dump")
+	if (str.substr(0, 4) == "dump")
 		return DUMP;
-	if (str == "add")
+	if (str.substr(0, 3) == "add")
 		return ADD;
-	if (str == "sub")
+	if (str.substr(0, 3) == "sub")
 		return SUB;
-	if (str == "mul")
+	if (str.substr(0, 3) == "mul")
 		return MUL;
-	if (str == "div")
+	if (str.substr(0, 3) == "div")
 		return DIV;
-	if (str == "mod")
+	if (str.substr(0, 3) == "mod")
 		return MOD;
-	if (str == "print")
+	if (str.substr(0, 5) == "print")
 		return PRINT;
-	if (str == "exit")
+	if (str.substr(0, 4) == "exit")
 		return EXIT;
-	if (str == ";;")
+	if (str.substr(0, 2) == ";;")
 		return END;
 	return ERROR;
 }

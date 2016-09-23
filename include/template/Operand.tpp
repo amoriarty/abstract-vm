@@ -97,7 +97,7 @@ class Operand : public IOperand {
 
 			if (_type == rhs.getPrecision()) {
 				down = static_cast<const Operand<T> *>(&rhs);
-				return (new Operand<T>(_type, _value - down->getValue()));
+				return (new Operand<T>(_type, down->getValue() - _value));
 			}
 			else {
 				if (_type > rhs.getPrecision())
