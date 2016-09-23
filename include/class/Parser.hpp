@@ -13,6 +13,7 @@
 namespace Parser {
 	//PARSER
 	const std::vector<std::string *>		&readFile(const char *file_name);
+	const std::vector<std::string *>		&readStdin(void);
 
 	//LEXER
 	eCommandType							getCommandType(const std::string &str);

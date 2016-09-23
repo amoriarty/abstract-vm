@@ -23,6 +23,11 @@ int												main(int ac, char **av) {
 
 			calculator.doMagic();
 		}
+		else if (ac == 1) {
+			Calculator							cal(Parser::readStdin());
+
+			cal.doMagic();
+		}
 	} catch (std::exception &e) {
 		std::cout << "Error: ";
 		std::cout << e.what() << std::endl;

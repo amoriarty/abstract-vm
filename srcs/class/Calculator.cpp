@@ -38,6 +38,7 @@ void 								Calculator::doMagic(void) {
 				break ;
 			case ASSERT:
 				this->assert(**it);
+				break ;
 			case ADD:
 				this->add();
 				break ;
