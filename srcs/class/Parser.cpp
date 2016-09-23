@@ -19,11 +19,13 @@ const std::vector<std::string *>		&Parser::readFile(const char *file_name) {
 	{
 		if (strlen(line))
 			command_list->push_back(new std::string(line));
+		if (!strncmp(line, "exit", 4))
+			break ;
 	}
 	file.close();
-	if (strncmp(line, "exit", 4))
-		throw Exceptions::MissingExitInstruction();
 	delete [] (line);
+	if (**(command_list->rbegin()) != "exit")
+		throw Exceptions::MissingExitInstruction();
 	return *command_list;
 }
 
