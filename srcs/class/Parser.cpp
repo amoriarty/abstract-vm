@@ -32,15 +32,18 @@ const std::vector<std::string *>		&Parser::readFile(const char *file_name) {
 const std::vector<std::string *>		&Parser::readStdin(void) {
 	std::vector<std::string *>		*command_list = new std::vector<std::string *>;
 	char 							*line = new char [BUFF_SIZE];
+	bool 							exit = false;
 
 	while (strncmp(line, ";;", 2))
 	{
 		std::cin.getline(line, BUFF_SIZE);
 		if (strlen(line) && strncmp(line, ";;", 2))
 			command_list->push_back(new std::string(line));
+		if (!strncmp(line, "exit", 4))
+			exit = true;
 	}
 	delete [] (line);
-	if (**(command_list->rbegin()) != "exit")
+	if (exit == false)
 		throw Exceptions::MissingExitInstruction();
 	return *command_list;
 }
@@ -95,6 +98,18 @@ eOperandType							Parser::getOperandType(const std::string &str) {
 
 std::string								Parser::getOperandValue(const std::string &str) {
 	std::string							operand_value = str.substr(str.find('(') + 1, str.size());
+	const char							*check;
+	std::regex							num("^[0-9]*$");
 
-	return operand_value.substr(0, operand_value.find(')'));
+	if (operand_value.find(')') != std::string::npos) {
+		check = operand_value.substr(operand_value.find(')') + 1, operand_value.find(';') - 1).c_str();
+		for (int i = 0; check[i]; i++) {
+			if (check[i] != ' ' && check[i] != ';')
+				throw Exceptions::Syntax();
+		}
+	}
+	operand_value = operand_value.substr(0, operand_value.find(')'));
+	if (!std::regex_match(operand_value, num))
+		throw Exceptions::Syntax();
+	return operand_value;
 }
