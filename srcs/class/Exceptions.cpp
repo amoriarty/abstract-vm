@@ -63,3 +63,8 @@ const char *
 Exceptions::PrintOnEmptyStack::what(void) const throw() {
 	return ("Try to print on empty stack.");
 }
+
+const char *
+Exceptions::FileDoesNotExist::what(void) const throw() {
+	return ("File doesn't exist.");
+}

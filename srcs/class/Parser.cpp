@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <regex>
+#include <unistd.h>
 #include "eOperandType.hpp"
 #include "Exceptions.hpp"
 #include "Parser.hpp"
@@ -14,6 +15,8 @@ const std::vector<std::string *>		&Parser::readFile(const char *file_name) {
 	std::vector<std::string *>		*command_list = new std::vector<std::string *>;
 	char 							*line = new char [BUFF_SIZE];
 
+	if (access(file_name, F_OK) == -1)
+		throw Exceptions::FileDoesNotExist();
 	file.open(file_name);
 	while (file.getline(line, BUFF_SIZE))
 	{

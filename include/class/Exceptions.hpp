@@ -66,6 +66,11 @@ namespace Exceptions {
 		public:
 			const char 				*what(void) const throw();
 	};
+
+	class FileDoesNotExist: public std::exception {
+		public:
+			const char				*what(void) const throw();
+	};
 };
 
 #endif
