@@ -54,9 +54,9 @@ const std::vector<std::string *>		&Parser::readStdin(void) {
 //LEXER
 //TODO JE RISQUE D'AVOIR UN PROBLEME ENTRE LES COMMENTAIRES ET LA FIN DES ENTREE (';;')
 eCommandType							Parser::getCommandType(const std::string &str) {
-	if (str.substr(0, 4) == "push")
+	if (str.substr(0, 5) == "push ")
 		return PUSH;
-	if (str.substr(0, 6) == "assert")
+	if (str.substr(0, 7) == "assert ")
 		return ASSERT;
 	if (str.substr(0, 1) == ";")
 		return COMMENT;

@@ -49,7 +49,7 @@ Factory::createInt8(const std::string &value) const {
 	std::ostringstream		ss;
 
 	ss << number;
-	if (value.compare(ss.str()) != 0) {
+	if (value.substr(0, value.find('.')).compare(ss.str().substr(0, ss.str().find('.'))) != 0) {
 		if (value.find('-') != std::string::npos)
 			throw Exceptions::Underflow();
 		throw Exceptions::Overflow();
@@ -63,7 +63,7 @@ Factory::createInt16(const std::string &value) const {
 	std::ostringstream		ss;
 
 	ss << number;
-	if (value.compare(ss.str()) != 0) {
+	if (value.substr(0, value.find('.')).compare(ss.str().substr(0, ss.str().find('.'))) != 0) {
 		if (value.find('-') != std::string::npos)
 			throw Exceptions::Underflow();
 		throw Exceptions::Overflow();
@@ -77,7 +77,7 @@ Factory::createInt32(const std::string &value) const {
 	std::ostringstream		ss;
 
 	ss << number;
-	if (value.compare(ss.str()) != 0) {
+	if (value.substr(0, value.find('.')).compare(ss.str().substr(0, ss.str().find('.'))) != 0) {
 		if (value.find('-') != std::string::npos)
 			throw Exceptions::Underflow();
 		throw Exceptions::Overflow();
