@@ -27,7 +27,7 @@ const std::vector<std::string *>		&Parser::readFile(const char *file_name) {
 	}
 	file.close();
 	delete [] (line);
-	if (**(command_list->rbegin()) != "exit")
+	if (command_list->size() && **(command_list->rbegin()) != "exit")
 		throw Exceptions::MissingExitInstruction();
 	return *command_list;
 }
