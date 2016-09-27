@@ -96,6 +96,9 @@ void								Calculator::dump(void) const {
 }
 
 void 								Calculator::assert(const std::string &str) const {
+    if (!_operand_table.size())
+		throw Exceptions::AssertError();
+
 	std::string						value = Parser::getOperandValue(str);
 	const IOperand					&operand = **(_operand_table.rbegin());
 
