@@ -102,7 +102,7 @@ eOperandType							Parser::getOperandType(const std::string &str) {
 std::string								Parser::getOperandValue(const std::string &str) {
 	std::string							operand_value = str.substr(str.find('(') + 1, str.size());
 	const char							*check;
-	std::regex							num("^[0-9.]*$");
+	std::regex							num("^[0-9.-]*$");
 
 	if (operand_value.find(')') != std::string::npos) {
 		check = operand_value.substr(operand_value.find(')') + 1, std::string::npos).c_str();

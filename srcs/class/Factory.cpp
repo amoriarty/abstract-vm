@@ -45,7 +45,7 @@ Factory::createOperand(const eOperandType type, std::string const &value) const 
 //PRIVATE METHOD
 const IOperand *
 Factory::createInt8(const std::string &value) const {
-	int 					number = atoi(value.c_str());
+	int 					number = static_cast<char>(atoi(value.c_str()));
 	std::ostringstream		ss;
 
 	ss << number;
@@ -59,7 +59,7 @@ Factory::createInt8(const std::string &value) const {
 
 const IOperand *
 Factory::createInt16(const std::string &value) const {
-	int 					number = atoi(value.c_str());
+	int 					number = static_cast<short>(atoi(value.c_str()));
 	std::ostringstream		ss;
 
 	ss << number;
@@ -87,7 +87,7 @@ Factory::createInt32(const std::string &value) const {
 
 const IOperand *
 Factory::createFloat(const std::string &value) const {
-	double 					number = atof(value.c_str());
+	double 					number = static_cast<float>(atof(value.c_str()));
 	std::ostringstream		ss;
 
 	ss << number;
